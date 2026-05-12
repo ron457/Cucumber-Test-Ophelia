@@ -1,0 +1,29 @@
+{
+  "name": "ophelia",
+  "version": "1.0.0",
+  "description": "Playwright Cucumber TypeScript automation framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:login": "cucumber-js --tags \"@login\"",
+    "test:smoke": "cucumber-js --tags \"@smoke\"",
+    "test:regression": "cucumber-js --tags \"@regression\""
+  },
+  "keywords": [
+    "playwright",
+    "cucumber",
+    "typescript",
+    "automation",
+    "bdd"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@playwright/test": "^1.53.0",
+    "@types/node": "^22.15.21",
+    "playwright": "^1.53.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

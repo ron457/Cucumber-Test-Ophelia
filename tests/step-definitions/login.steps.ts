@@ -1,0 +1,44 @@
+import { Before, After, Given, When, Then, setDefaultTimeout } from '@cucumber/cucumber';
+import { chromium, Browser, Page } from '@playwright/test';
+import { LoginPage } from '../pages/login.page';
+
+setDefaultTimeout(60 * 1000);
+
+let browser: Browser;
+let page: Page;
+let loginPage: LoginPage;
+
+Before(async function () {
+  browser = await chromium.launch({
+    headless: false,
+    slowMo: 1500
+  });
+
+  const context = await browser.newContext();
+  page = await context.newPage();
+  loginPage = new LoginPage(page);
+});
+
+After(async function () {
+  await browser.close();
+});
+
+Given('user navigates to login page', async function () {
+  await loginPage.navigateToLoginPage();
+});
+
+When('user enters valid username', async function () {
+  await loginPage.enterUsername();
+});
+
+When('user enters valid password', async function () {
+  await loginPage.enterPassword();
+});
+
+When('user clicks on login button', async function () {
+  await loginPage.clickLogin();
+});
+
+Then('user should be redirected to dashboard page', async function () {
+  await loginPage.verifySuccessfulLogin();
+});
