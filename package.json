@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "Playwright Cucumber TypeScript automation framework",
   "main": "index.js",
+  
   "scripts": {
-    "test": "cucumber-js",
-    "test:login": "cucumber-js --tags \"@login\"",
-    "test:smoke": "cucumber-js --tags \"@smoke\"",
-    "test:regression": "cucumber-js --tags \"@regression\""
+    "test": "cucumber-js --format json:reports/cucumber-report.json",
+    "test:login": "cucumber-js --tags \"@login\" --format json:reports/cucumber-report.json",
+    "test:smoke": "cucumber-js --tags \"@smoke\" --format json:reports/cucumber-report.json",
+    "test:regression": "cucumber-js --tags \"@regression\" --format json:reports/cucumber-report.json",
+    "report": "ts-node report.ts",
+    "test:login:report": "npm run test:login && npm run report"
   },
+
   "keywords": [
     "playwright",
     "cucumber",
@@ -22,6 +26,7 @@
     "@cucumber/cucumber": "^10.8.0",
     "@playwright/test": "^1.53.0",
     "@types/node": "^22.15.21",
+    "multiple-cucumber-html-reporter": "^3.10.0",
     "playwright": "^1.53.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"

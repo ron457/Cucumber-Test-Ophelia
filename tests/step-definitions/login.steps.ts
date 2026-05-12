@@ -1,6 +1,16 @@
-import { Before, After, Given, When, Then, setDefaultTimeout } from '@cucumber/cucumber';
+import {
+  Before,
+  After,
+  AfterStep,
+  Given,
+  When,
+  Then,
+  setDefaultTimeout
+} from '@cucumber/cucumber';
 import { chromium, Browser, Page } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
+import fs from 'fs';
+import path from 'path';
 
 setDefaultTimeout(60 * 1000);
 
@@ -11,12 +21,29 @@ let loginPage: LoginPage;
 Before(async function () {
   browser = await chromium.launch({
     headless: false,
-    slowMo: 1500
+    slowMo: 1000
   });
 
   const context = await browser.newContext();
   page = await context.newPage();
   loginPage = new LoginPage(page);
+
+  if (!fs.existsSync('reports/screenshots')) {
+    fs.mkdirSync('reports/screenshots', { recursive: true });
+  }
+});
+
+AfterStep(async function ({ pickleStep }) {
+  const fileName = `${Date.now()}_${pickleStep.text.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
+  const screenshotPath = path.join('reports/screenshots', fileName);
+
+  const image = await page.screenshot({
+    path: screenshotPath,
+    fullPage: true
+  });
+
+  await this.attach(image, 'image/png');
+  console.log(`Step completed: ${pickleStep.text}`);
 });
 
 After(async function () {
