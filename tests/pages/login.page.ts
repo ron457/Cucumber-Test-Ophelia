@@ -1,6 +1,9 @@
 import { Page, expect } from '@playwright/test';
-import { loginLocators } from '../../utilities/locators/login.locator';
-import testData from '../../Assets/test-data/data.json';
+import { loginLocators } from '../../utilities/locators/login.locator.js';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const testData = require('../../Assets/test-data/data.json');
 
 export class LoginPage {
   constructor(private page: Page) {}

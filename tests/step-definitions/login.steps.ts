@@ -8,7 +8,7 @@ import {
   setDefaultTimeout
 } from '@cucumber/cucumber';
 import { chromium, Browser, Page } from '@playwright/test';
-import { LoginPage } from '../pages/login.page';
+import { LoginPage } from '../pages/login.page.js';
 import fs from 'fs';
 import path from 'path';
 
@@ -18,7 +18,7 @@ let browser: Browser;
 let page: Page;
 let loginPage: LoginPage;
 
-Before(async function () {
+Before({ tags: '@login' }, async function () {
   browser = await chromium.launch({
     headless: false,
     slowMo: 1000
@@ -33,7 +33,7 @@ Before(async function () {
   }
 });
 
-AfterStep(async function ({ pickleStep }) {
+AfterStep({ tags: '@login' }, async function ({ pickleStep }) {
   const fileName = `${Date.now()}_${pickleStep.text.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
   const screenshotPath = path.join('reports/screenshots', fileName);
 
@@ -46,7 +46,7 @@ AfterStep(async function ({ pickleStep }) {
   console.log(`Step completed: ${pickleStep.text}`);
 });
 
-After(async function () {
+After({ tags: '@login' }, async function () {
   await browser.close();
 });
 

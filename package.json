@@ -3,25 +3,16 @@
   "version": "1.0.0",
   "description": "Playwright Cucumber TypeScript automation framework",
   "main": "index.js",
-  
+  "type": "module",
   "scripts": {
-    "test": "cucumber-js --format json:reports/cucumber-report.json",
-    "test:login": "cucumber-js --tags \"@login\" --format json:reports/cucumber-report.json",
-    "test:smoke": "cucumber-js --tags \"@smoke\" --format json:reports/cucumber-report.json",
-    "test:regression": "cucumber-js --tags \"@regression\" --format json:reports/cucumber-report.json",
+    "clean:reports": "rmdir /s /q reports\\html-report 2>nul & rmdir /s /q reports\\screenshots 2>nul & del /q reports\\cucumber-report.json 2>nul",
+    "test": "cucumber-js",
+    "test:hotel": "cucumber-js --tags \"@hotel\"",
+    "test:smoke": "cucumber-js --tags \"@smoke\"",
+    "test:regression": "cucumber-js --tags \"@regression\"",
     "report": "ts-node report.ts",
-    "test:login:report": "npm run test:login && npm run report"
+    "test:hotel:report": "npm run clean:reports && npm run test:hotel && npm run report"
   },
-
-  "keywords": [
-    "playwright",
-    "cucumber",
-    "typescript",
-    "automation",
-    "bdd"
-  ],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "^10.8.0",
     "@playwright/test": "^1.53.0",
