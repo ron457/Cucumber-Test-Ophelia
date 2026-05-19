@@ -82,6 +82,7 @@ The framework currently automates login and booking functionality using:
   https://www.saucedemo.com/
   
 - AutomationTesting
+  
   https://automationintesting.online/
 
 This application is commonly used for automation practice because of its stable UI, predictable locators, and reusable test credentials.
@@ -111,7 +112,7 @@ Then user should be redirected to dashboard page
 Clone the repository:
 
 ```bash
-git clone (https://github.com/ron457/Cucumber-Test-Ophelia.git)
+git clone https://github.com/ron457/Cucumber-Test-Ophelia.git
 ```
 
 Move into project directory:
