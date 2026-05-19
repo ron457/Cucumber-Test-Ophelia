@@ -80,7 +80,8 @@ The framework currently automates login and booking functionality using:
 
 - SauceDemo  
   https://www.saucedemo.com/
-- Automationtesting
+  
+- AutomationTesting
   https://automationintesting.online/
 
 This application is commonly used for automation practice because of its stable UI, predictable locators, and reusable test credentials.
