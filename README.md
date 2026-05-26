@@ -76,10 +76,14 @@ playwright-bdd-tests/
 
 ## Test Website Used
 
-The framework currently automates login functionality using:
+The framework currently automates login and booking functionality using:
 
 - SauceDemo  
   https://www.saucedemo.com/
+  
+- AutomationTesting
+  
+  https://automationintesting.online/
 
 This application is commonly used for automation practice because of its stable UI, predictable locators, and reusable test credentials.
 
@@ -101,48 +105,20 @@ Then user should be redirected to dashboard page
 
 ---
 
-## Test Data Management
 
-Test data is maintained externally using JSON.
-
-Example:
-
-```json
-{
-  "validUser": {
-    "url": "https://www.saucedemo.com/",
-    "username": "standard_user",
-    "password": "secret_sauce"
-  },
-
-  "lockedUser": {
-    "url": "https://www.saucedemo.com/",
-    "username": "locked_out_user",
-    "password": "secret_sauce"
-  },
-
-  "invalidUser": {
-    "url": "https://www.saucedemo.com/",
-    "username": "wrong_user",
-    "password": "wrong_password"
-  }
-}
-```
-
----
 
 ## Installation
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/Anshuman7183/playwright-bdd-tests.git
+git clone https://github.com/ron457/Cucumber-Test-Ophelia.git
 ```
 
 Move into project directory:
 
 ```bash
-cd playwright-bdd-tests
+cd Cucumber-Test-Ophelia
 ```
 
 Install dependencies:
