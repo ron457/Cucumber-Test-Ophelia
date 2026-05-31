@@ -289,5 +289,3 @@ No changes needed outside the `tests` folder and `utilities/locators` for most s
 **Anshuman Nayak**  
 **Piyush Nayak**  
 **Rhitav Gangopadhyay**  
-
-TCS Gen AI & QA Internship
