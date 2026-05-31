@@ -8,9 +8,15 @@ export const shopLocators = {
   navCart: '[data-test="nav-cart"]',
   proceed1: '[data-test="proceed-1"]',
   proceed2: '[data-test="proceed-2"]',
+  proceed2Guest: '[data-test="proceed-2-guest"]',
   proceed3: '[data-test="proceed-3"]',
   registerLink: '[data-test="register-link"]',
   loginSubmit: '[data-test="login-submit"]',
+  continueAsGuest: '[role="tab"][name="Continue as Guest"]',
+  guestEmail: '[data-test="guest-email"]',
+  guestFirstName: '[data-test="guest-first-name"]',
+  guestLastName: '[data-test="guest-last-name"]',
+  guestSubmit: '[data-test="guest-submit"]',
   paymentMethod: '[data-test="payment-method"]',
   finish: '[data-test="finish"]'
 };

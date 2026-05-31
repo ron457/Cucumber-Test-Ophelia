@@ -23,13 +23,25 @@ Feature: Practice software testing shopping journey
     Then the user should be authenticated
 
   @checkout @regression
-Scenario: User continues checkout after authentication
-  Given the user opens the practice software testing homepage
-  When the user selects a hardware product
-  And the user adds the product to cart
-  And the user proceeds to checkout
-  And the user continues checkout after authentication
-  And the user fills billing details
-  And the user selects payment method
-  And the user confirms the order
-  Then the order confirmation message should appear
+  Scenario: User continues checkout after authentication
+    Given the user opens the practice software testing homepage
+    When the user selects a hardware product
+    And the user adds the product to cart
+    And the user proceeds to checkout
+    And the user continues checkout after authentication
+    And the user fills billing details
+    And the user selects payment method
+    And the user confirms the order
+    Then the order confirmation message should appear
+
+  @checkout-guest @regression
+  Scenario: User completes checkout as guest
+    Given the user opens the practice software testing homepage
+    When the user selects a hardware product
+    And the user adds the product to cart
+    And the user proceeds to checkout
+    And the user continues checkout as guest
+    And the user fills billing details
+    And the user selects payment method
+    And the user confirms the order
+    Then the order confirmation message should appear

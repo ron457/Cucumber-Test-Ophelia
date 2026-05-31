@@ -4,13 +4,18 @@
     "email": "rhitav47@gmail.com",
     "password": "WarHammer@69"
   },
+  "guest": {
+    "email": "guestuser@testmail.com",
+    "firstName": "Guest",
+    "lastName": "Tester"
+  },
   "register": {
     "firstName": "Lewis",
     "lastName": "Hamilton",
     "dob": "2004-05-07",
-    "country": "IN",    
+    "country": "IN",
     "postalCode": "66976986",
-    "houseNumber": "77",
+    "houseNumber": "77z",
     "phone": "7876868765076",
     "email": "rhitav47@gmail.com",
     "password": "WarHammer@69"

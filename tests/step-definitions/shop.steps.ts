@@ -18,29 +18,27 @@ let browser: Browser;
 let page: Page;
 let shopPage: ShopPage;
 
-Before({ tags: '@smoke or @login or @register or @cart or @checkout or @regression or @auth' }, async function () {
+Before({ tags: '@smoke or @login or @register or @cart or @checkout or @checkout-guest or @regression or @auth' }, async function () {
   browser = await chromium.launch({
     headless: false,
     slowMo: 250
   });
-
   const context = await browser.newContext();
   page = await context.newPage();
   shopPage = new ShopPage(page);
-
   if (!fs.existsSync('reports/screenshots')) {
     fs.mkdirSync('reports/screenshots', { recursive: true });
   }
 });
 
-AfterStep({ tags: '@smoke or @login or @register or @cart or @checkout or @regression or @auth' }, async function ({ pickleStep }) {
+AfterStep({ tags: '@smoke or @login or @register or @cart or @checkout or @checkout-guest or @regression or @auth' }, async function ({ pickleStep }) {
   const fileName = `${Date.now()}_${pickleStep.text.replace(/[^a-zA-Z0-9]/g, '_')}.png`;
   const screenshotPath = path.join('reports/screenshots', fileName);
   const image = await page.screenshot({ path: screenshotPath, fullPage: true });
   await this.attach(image, 'image/png');
 });
 
-After({ tags: '@smoke or @login or @register or @cart or @checkout or @regression or @auth' }, async function () {
+After({ tags: '@smoke or @login or @register or @cart or @checkout or @checkout-guest or @regression or @auth' }, async function () {
   await browser.close();
 });
 
@@ -90,6 +88,10 @@ When('the user proceeds to checkout', async function () {
 
 When('the user continues checkout after authentication', async function () {
   await shopPage.continueCheckoutAfterAuthentication();
+});
+
+When('the user continues checkout as guest', async function () {
+  await shopPage.continueCheckoutAsGuest();
 });
 
 When('the user fills billing details', async function () {
