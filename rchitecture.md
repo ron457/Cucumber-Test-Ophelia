@@ -13,20 +13,20 @@
 
 ```mermaid
 flowchart TD
-    A([Test Trigger\nCI/CD Push / Manual Run]) --> B[Cucumber Runner\ncucumber.cjs]
-    B --> C[Read Feature Files\ntests/features/shop.feature]
-    C --> D[Match Step Definitions\ntests/step-definitions/shop.steps.ts]
-    D --> E[Execute Hooks\nBefore / AfterStep / After]
-    E --> F[Invoke Page Objects\ntests/pages/shop.page.ts]
-    F --> G[Resolve Locators\nutilities/locators/shop.locator.ts]
-    G --> H[Load Test Data\nAssets/test-data/shop-data.json]
-    H --> I[Playwright Browser Actions\nChromium]
+    A([Test Trigger - CI/CD Push or Manual Run]) --> B[Cucumber Runner - cucumber.cjs]
+    B --> C[Read Feature Files - tests/features/shop.feature]
+    C --> D[Match Step Definitions - shop.steps.ts]
+    D --> E[Execute Hooks - Before / AfterStep / After]
+    E --> F[Invoke Page Objects - shop.page.ts]
+    F --> G[Resolve Locators - shop.locator.ts]
+    G --> H[Load Test Data - shop-data.json]
+    H --> I[Playwright Browser Actions - Chromium]
     I --> J{Step Result}
-    J -->|Pass| K[Capture Screenshot\nAfterStep Hook]
+    J -->|Pass| K[Capture Screenshot via AfterStep Hook]
     J -->|Fail| K
     K --> L{More Steps?}
     L -->|Yes| D
-    L -->|No| M[Generate Reports\nHTML + JSON]
+    L -->|No| M[Generate Reports - HTML and JSON]
     M --> N([Test Run Complete])
 ```
 
@@ -37,31 +37,31 @@ flowchart TD
 ```mermaid
 flowchart TD
     subgraph CI ["CI/CD — GitHub Actions"]
-        GH[.github/workflows/playwright.yml]
+        GH[".github/workflows/playwright.yml"]
     end
 
     subgraph BDD ["BDD Layer"]
-        FF[Feature Files\nGherkin Scenarios]
-        SD[Step Definitions\nTypeScript]
+        FF["Feature Files - Gherkin Scenarios"]
+        SD["Step Definitions - TypeScript"]
     end
 
-    subgraph Framework ["Framework Core"]
-        PO[Page Objects\nUI Action Methods]
-        LO[Locators\nCSS / data-test selectors]
-        TD[Test Data\nshop-data.json]
-        HK[Hooks\nBefore / AfterStep / After]
-        CFG[Config\nplaywright.config.ts]
+    subgraph Core ["Framework Core"]
+        PO["Page Objects - UI Action Methods"]
+        LO["Locators - CSS / data-test selectors"]
+        TD["Test Data - shop-data.json"]
+        HK["Hooks - Before / AfterStep / After"]
+        CFG["Config - playwright.config.ts"]
     end
 
     subgraph Browser ["Browser Automation"]
-        PW[Playwright\nChromium Engine]
-        AUT[Application Under Test\npracticesoftwaretesting.com]
+        PW["Playwright - Chromium Engine"]
+        AUT["App Under Test - practicesoftwaretesting.com"]
     end
 
     subgraph Reporting ["Reporting"]
-        RPT[Cucumber HTML Report]
-        SS[Screenshots]
-        JSON[JSON Report]
+        RPT["Cucumber HTML Report"]
+        SS["Screenshots"]
+        JSON["JSON Report"]
     end
 
     GH --> FF
@@ -84,25 +84,25 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    ROOT[ophelia-framework/] --> TESTS[tests/]
-    ROOT --> ASSETS[Assets/]
-    ROOT --> UTILS[utilities/]
-    ROOT --> CONFIG[Config/]
-    ROOT --> GITHUB[.github/workflows/]
-    ROOT --> RUNNER[cucumber.cjs]
+    ROOT["ophelia-framework/"] --> TESTS["tests/"]
+    ROOT --> ASSETS["Assets/"]
+    ROOT --> UTILS["utilities/"]
+    ROOT --> CONFIG["Config/"]
+    ROOT --> GITHUB[".github/workflows/"]
+    ROOT --> RUNNER["cucumber.cjs"]
 
-    TESTS --> FEAT[features/\nshop.feature]
-    TESTS --> STEPS[step-definitions/\nshop.steps.ts]
-    TESTS --> PAGES[pages/\nshop.page.ts]
+    TESTS --> FEAT["features/ — shop.feature"]
+    TESTS --> STEPS["step-definitions/ — shop.steps.ts"]
+    TESTS --> PAGES["pages/ — shop.page.ts"]
 
-    ASSETS --> TESTDATA[test-data/\nshop-data.json]
-    ASSETS --> SCREENSHOTS[screenshots/]
+    ASSETS --> TESTDATA["test-data/ — shop-data.json"]
+    ASSETS --> SCREENSHOTS["screenshots/"]
 
-    UTILS --> LOCATORS[locators/\nshop.locator.ts]
+    UTILS --> LOCATORS["locators/ — shop.locator.ts"]
 
-    CONFIG --> PWCONFIG[playwright.config.ts]
+    CONFIG --> PWCONFIG["playwright.config.ts"]
 
-    GITHUB --> WORKFLOW[playwright.yml]
+    GITHUB --> WORKFLOW["playwright.yml"]
 ```
 
 ---
@@ -112,26 +112,26 @@ flowchart TD
 ```mermaid
 flowchart LR
     subgraph Input ["Input Layer"]
-        GHK[Gherkin .feature files]
-        JDATA[JSON Test Data]
+        GHK["Gherkin .feature files"]
+        JDATA["JSON Test Data"]
     end
 
     subgraph Logic ["Logic Layer"]
-        SD[Step Definitions\nConnects Gherkin → Playwright]
-        PO[Page Objects\nReusable UI methods]
-        LOC[Locators\nAll selectors centralised]
+        SD["Step Definitions - Connects Gherkin to Playwright"]
+        PO["Page Objects - Reusable UI methods"]
+        LOC["Locators - All selectors centralised"]
     end
 
     subgraph Execution ["Execution Layer"]
-        PW[Playwright\nAuto-wait, screenshot, navigation]
-        HK[Hooks\nSetup / Teardown / Screenshot]
-        CFG[Config\nBrowser, timeout, baseURL]
+        PW["Playwright - Auto-wait, screenshot, navigation"]
+        HK["Hooks - Setup / Teardown / Screenshot"]
+        CFG["Config - Browser, timeout, baseURL"]
     end
 
     subgraph Output ["Output Layer"]
-        HTML[HTML Report]
-        SS[Step Screenshots]
-        JRPT[JSON Report]
+        HTML["HTML Report"]
+        SS["Step Screenshots"]
+        JRPT["JSON Report"]
     end
 
     GHK --> SD
@@ -149,41 +149,40 @@ flowchart LR
 ---
 
 ## 5. Module Execution Flow (Tag-Based)
- 
+
 ```mermaid
 flowchart TD
-    START([npx cucumber-js]) --> TAG{Execution Tag}
- 
-    TAG -->|@smoke| M1[Module 1\nHomepage & Navigation]
-    TAG -->|@login| M2[Module 2\nAuthentication]
-    TAG -->|@register| M3[Module 3\nRegistration]
-    TAG -->|@cart| M4[Module 4\nCart Flow]
-    TAG -->|@checkout| M5[Module 5\nAuthenticated Checkout]
-    TAG -->|@checkout-guest| M6[Module 6\nGuest Checkout]
-    TAG -->|@regression| ALL[All Modules]
- 
-    M1 --> PASS
-    M2 --> PASS
-    M3 --> PASS
-    M4 --> PASS
-    M5 --> PASS
-    M6 --> PASS
-    ALL --> PASS
- 
-    PASS([Results & Report])
-```
- 
----
+    START([npx cucumber-js]) --> TAG{Execution Tag?}
 
+    TAG -->|smoke| M1["Module 1 - Homepage & Navigation"]
+    TAG -->|login| M2["Module 2 - Authentication"]
+    TAG -->|register| M3["Module 3 - Registration"]
+    TAG -->|cart| M4["Module 4 - Cart Flow"]
+    TAG -->|checkout| M5["Module 5 - Authenticated Checkout"]
+    TAG -->|checkout-guest| M6["Module 6 - Guest Checkout"]
+    TAG -->|regression| ALL["All Modules"]
+
+    M1 --> RESULTS
+    M2 --> RESULTS
+    M3 --> RESULTS
+    M4 --> RESULTS
+    M5 --> RESULTS
+    M6 --> RESULTS
+    ALL --> RESULTS
+
+    RESULTS([Results and Report])
+```
+
+---
 
 ## 6. Module 1 — Homepage & Navigation Flow
 
 ```mermaid
 flowchart TD
-    A([Browser Opens\nBase URL]) --> B[Wait for Page Load]
-    B --> C[Wait for Product Cards\nisVisible check]
-    C --> D{Skeleton\nLoading?}
-    D -->|Yes| C
+    A([Browser Opens - Base URL]) --> B[Wait for Page Load]
+    B --> C["Wait for Product Cards - isVisible check"]
+    C --> D{Skeleton Loading?}
+    D -->|Yes - loop| C
     D -->|No| E[Product Grid Rendered]
     E --> F[Browse Navigation]
     F --> G[Select Product]
@@ -207,10 +206,10 @@ flowchart TD
     C --> D[Enter Email from test-data]
     D --> E[Enter Password from test-data]
     E --> F[Click Submit]
-    F --> G{Authentication\nResult}
+    F --> G{Authentication Result}
     G -->|Success| H[Assert Authenticated State]
     G -->|Failure| I[Error Message Displayed]
-    H --> J([PASS — User Session Established])
+    H --> J([PASS - User Session Established])
     I --> K([FAIL])
 ```
 
@@ -221,22 +220,19 @@ flowchart TD
 ```mermaid
 flowchart TD
     A([Homepage Loaded]) --> B[Navigate to Register]
-    B --> C[Fill First Name]
-    C --> D[Fill Last Name]
-    D --> E[Fill Date of Birth]
-    E --> F[Fill Country]
-    F --> G[Fill Address\nHouse No + Street + City + State + Postal]
-    G --> H[Fill Phone]
-    H --> I[Fill Email]
-    I --> J[Fill Password]
-    J --> K{Password\nValidation}
-    K -->|Invalid chars| L[Adjust Password\nRemove special chars]
-    L --> J
-    K -->|Valid| M[Submit Registration Form]
-    M --> N{Account\nCreated?}
-    N -->|Yes| O[Assert Authenticated]
-    N -->|No| P([FAIL])
-    O --> Q([PASS])
+    B --> C[Fill First Name and Last Name]
+    C --> D[Fill Date of Birth and Country]
+    D --> E["Fill Address - House, Street, City, State, Postal"]
+    E --> F[Fill Phone and Email]
+    F --> G[Fill Password]
+    G --> H{Password Validation}
+    H -->|Invalid chars| I[Adjust Password - Remove special chars]
+    I --> G
+    H -->|Valid| J[Submit Registration Form]
+    J --> K{Account Created?}
+    K -->|Yes| L[Assert Authenticated]
+    K -->|No| M([FAIL])
+    L --> N([PASS])
 ```
 
 ---
@@ -248,12 +244,12 @@ flowchart TD
     A([Homepage Loaded]) --> B[Select Hardware Product]
     B --> C[Product Detail Page]
     C --> D[Click Add to Cart]
-    D --> E[Assert Success Toast\nTop-right notification]
+    D --> E[Assert Success Toast - Top-right notification]
     E --> F[Open Cart Page]
     F --> G[Assert Product Name]
-    G --> H[Assert Quantity = 1]
+    G --> H[Assert Quantity equals 1]
     H --> I[Assert Correct Price]
-    I --> J{All Assertions\nPass?}
+    I --> J{All Assertions Pass?}
     J -->|Yes| K([PASS])
     J -->|No| L([FAIL])
 ```
@@ -264,17 +260,17 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Product in Cart]) --> B[Proceed to Checkout\nproceed-1]
-    B --> C[Step 2: Sign In]
-    C --> D[Enter Credentials]
+    A([Product in Cart]) --> B["Proceed to Checkout - proceed-1"]
+    B --> C[Step 2 - Sign In Page]
+    C --> D[Enter Credentials from test-data]
     D --> E[Click Login Submit]
-    E --> F{Login\nSuccess?}
-    F -->|Yes| G[Click proceed-2]
-    F -->|No| H([FAIL / Switch to Guest])
-    G --> I[Step 3: Billing Address]
-    I --> J[Fill Billing Form\nfrom test-data]
-    J --> K[proceedBilling\nauto-detect proceed-3 vs proceed-2]
-    K --> L[Step 4: Payment]
+    E --> F{Login Success?}
+    F -->|Yes| G["Click proceed-2"]
+    F -->|No| H([FAIL or Switch to Guest])
+    G --> I[Step 3 - Billing Address]
+    I --> J[Fill Billing Form from test-data]
+    J --> K["proceedBilling - auto-detect proceed-3 vs proceed-2"]
+    K --> L[Step 4 - Payment]
     L --> M[Select Cash on Delivery]
     M --> N[Click Finish]
     N --> O[Assert Order Confirmation]
@@ -287,26 +283,25 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Product in Cart]) --> B[Click proceed-1\nArrives at Sign In Step]
-    B --> C[Fill Email + Password]
+    A([Product in Cart]) --> B["Click proceed-1 - Arrives at Sign In Step"]
+    B --> C[Fill Email and Password]
     C --> D[Click Login Submit]
-    D --> E{Wait up to 10s\nfor Error Text}
-    E -->|Error Detected\n'Invalid email or password'| F[Click 'Continue as Guest' Tab]
-    E -->|Timeout / Auth Success| G([Auth Flow or FAIL])
+    D --> E{Wait up to 10s for Error Text}
+    E -->|Error Detected| F["Click Continue as Guest Tab"]
+    E -->|Timeout or Auth Success| G([Auth Flow or FAIL])
     F --> H[Fill Guest Email]
-    H --> I[Fill Guest First Name]
-    I --> J[Fill Guest Last Name]
-    J --> K[Click Guest Submit]
-    K --> L[Assert 'Continuing as guest: Guest']
-    L --> M[Click proceed-2-guest\nArrives at Billing Address]
-    M --> N[Fill Billing Form]
-    N --> O[proceedBilling\nAuto-detects proceed-3]
-    O --> P[Select Cash on Delivery]
-    P --> Q[Click Finish — 1st time]
-    Q --> R[Assert payment-success-message\nvisible]
-    R --> S[Click Finish — 2nd time]
-    S --> T[Assert 'Thanks for your order!']
-    T --> U([PASS])
+    H --> I[Fill Guest First Name and Last Name]
+    I --> J[Click Guest Submit]
+    J --> K["Assert - Continuing as guest: Guest"]
+    K --> L["Click proceed-2-guest - Arrives at Billing Address"]
+    L --> M[Fill Billing Form]
+    M --> N["proceedBilling - Auto-detects proceed-3"]
+    N --> O[Select Cash on Delivery]
+    O --> P[Click Finish - 1st time]
+    P --> Q[Assert payment-success-message visible]
+    Q --> R[Click Finish - 2nd time]
+    R --> S["Assert: Thanks for your order!"]
+    S --> T([PASS])
 ```
 
 ---
@@ -316,11 +311,11 @@ flowchart TD
 ```mermaid
 flowchart TD
     A([AfterStep Hook Triggered]) --> B[Every Step Completion]
-    B --> C{Step\nStatus}
+    B --> C{Step Status}
     C -->|Pass| D[Capture Full-Page Screenshot]
     C -->|Fail| D
-    D --> E[Save to Assets/screenshots/]
-    E --> F[Filename: step-name-timestamp.png]
+    D --> E["Save to Assets/screenshots/"]
+    E --> F["Filename: step-name-timestamp.png"]
     F --> G[Attach to Cucumber Report]
     G --> H([Screenshot Archived])
 ```
@@ -331,15 +326,15 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A([Git Push to Repository]) --> B[GitHub Actions Triggered\nplaywright.yml]
+    A([Git Push to Repository]) --> B["GitHub Actions Triggered - playwright.yml"]
     B --> C[Checkout Repository]
-    C --> D[Install Node.js 18+]
-    D --> E[npm install\nInstall dependencies]
-    E --> F[Install Playwright Browsers\nnpx playwright install]
-    F --> G[Run Tests\nnpx cucumber-js]
+    C --> D["Install Node.js 18+"]
+    D --> E["npm install - Install dependencies"]
+    E --> F["npx playwright install - Chromium Browser"]
+    F --> G["Run Tests - npx cucumber-js"]
     G --> H{Test Results}
     H -->|All Pass| I[Generate HTML Report]
-    H -->|Any Fail| J[Generate HTML Report\n+ Failure Screenshots]
+    H -->|Any Fail| J["Generate HTML Report + Failure Screenshots"]
     I --> K[Upload Artifacts]
     J --> K
     K --> L([Pipeline Complete])
@@ -352,17 +347,17 @@ flowchart TD
 ```mermaid
 flowchart LR
     subgraph JSON ["shop-data.json"]
-        LOGIN[login\nemail + password]
-        GUEST[guest\nemail + firstName + lastName]
-        REG[registration\nfull user profile]
-        BILLING[billing\naddress fields]
+        LOGIN["login - email and password"]
+        GUEST["guest - email, firstName, lastName"]
+        REG["registration - full user profile"]
+        BILLING["billing - address fields"]
     end
 
     subgraph Modules ["Test Modules"]
-        M2[Auth / Guest Fallback]
-        M3[Registration]
-        M5[Authenticated Checkout]
-        M6[Guest Checkout]
+        M2["Auth / Guest Fallback"]
+        M3["Registration"]
+        M5["Authenticated Checkout"]
+        M6["Guest Checkout"]
     end
 
     LOGIN --> M2
@@ -379,9 +374,9 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A([proceedBilling called]) --> B{Is proceed-3\nvisible?}
-    B -->|Yes — Guest Flow| C[Click proceed-3]
-    B -->|No — Auth Flow| D[Click proceed-2]
+    A(["proceedBilling called"]) --> B{"Is proceed-3 visible?"}
+    B -->|Yes - Guest Flow| C["Click proceed-3"]
+    B -->|No - Auth Flow| D["Click proceed-2"]
     C --> E([Arrives at Payment Step])
     D --> E
 ```
@@ -404,3 +399,4 @@ flowchart TD
 | AC-10 | Cucumber HTML report generated after each run | Passing |
 | AC-11 | proceedBilling auto-detects proceed-3 vs proceed-2 for guest vs auth | Passing |
 | AC-12 | Framework requires only tests folder changes for a new site | Passing |
+
