@@ -149,11 +149,11 @@ flowchart LR
 ---
 
 ## 5. Module Execution Flow (Tag-Based)
-
+ 
 ```mermaid
 flowchart TD
     START([npx cucumber-js]) --> TAG{Execution Tag}
-
+ 
     TAG -->|@smoke| M1[Module 1\nHomepage & Navigation]
     TAG -->|@login| M2[Module 2\nAuthentication]
     TAG -->|@register| M3[Module 3\nRegistration]
@@ -161,7 +161,7 @@ flowchart TD
     TAG -->|@checkout| M5[Module 5\nAuthenticated Checkout]
     TAG -->|@checkout-guest| M6[Module 6\nGuest Checkout]
     TAG -->|@regression| ALL[All Modules]
-
+ 
     M1 --> PASS
     M2 --> PASS
     M3 --> PASS
@@ -169,11 +169,12 @@ flowchart TD
     M5 --> PASS
     M6 --> PASS
     ALL --> PASS
-
+ 
     PASS([Results & Report])
 ```
-
+ 
 ---
+
 
 ## 6. Module 1 — Homepage & Navigation Flow
 
