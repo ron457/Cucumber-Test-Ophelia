@@ -20,19 +20,51 @@ A scalable end-to-end test automation framework built using **Playwright**, **Cu
 
 ## Framework Architecture
 
+```mermaid
+flowchart TD
+    subgraph CI ["CI/CD — GitHub Actions"]
+        GH[".github/workflows/playwright.yml"]
+    end
+
+    subgraph BDD ["BDD Layer"]
+        FF["Feature Files - Gherkin Scenarios"]
+        SD["Step Definitions - TypeScript"]
+    end
+
+    subgraph Core ["Framework Core"]
+        PO["Page Objects - UI Action Methods"]
+        LO["Locators - CSS / data-test selectors"]
+        TD["Test Data - shop-data.json"]
+        HK["Hooks - Before / AfterStep / After"]
+        CFG["Config - playwright.config.ts"]
+    end
+
+    subgraph Browser ["Browser Automation"]
+        PW["Playwright - Chromium Engine"]
+        AUT["App Under Test - practicesoftwaretesting.com"]
+    end
+
+    subgraph Reporting ["Reporting"]
+        RPT["Cucumber HTML Report"]
+        SS["Screenshots"]
+        JSON["JSON Report"]
+    end
+
+    GH --> FF
+    FF --> SD
+    SD --> HK
+    SD --> PO
+    PO --> LO
+    PO --> TD
+    HK --> SS
+    CFG --> PW
+    PO --> PW
+    PW --> AUT
+    SD --> RPT
+    SD --> JSON
 ```
-Feature Files (Gherkin)
-        ↓
-Step Definitions (TypeScript)
-        ↓
-Page Object Methods (shop.page.ts)
-        ↓
-Locators (shop.locator.ts) + Test Data (shop-data.json)
-        ↓
-Playwright Browser Actions
-        ↓
-Screenshots + Cucumber HTML Report
-```
+
+---
 
 Design patterns used:
 
