@@ -25,7 +25,7 @@ export class ShopPage {
     await this.page.goto(testData.url, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await expect(this.page.locator('[data-test="nav-home"]')).toBeVisible();
     this.log('Homepage loaded and nav-home visible');
-    await this.captureStep('homepage opened');
+    // await this.captureStep('homepage opened');
   }
 
   async browseNavigation() {

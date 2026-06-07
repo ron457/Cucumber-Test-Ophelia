@@ -1,0 +1,10 @@
+{
+  "sortOptions": [
+    "Name (A - Z)",
+    "Name (Z - A)",
+    "Price (High - Low)",
+    "Price (Low - High)",
+    "CO₂ Rating (A - E)",
+    "CO₂ Rating (E - A)"
+  ]
+}
