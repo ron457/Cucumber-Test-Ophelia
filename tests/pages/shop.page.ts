@@ -68,7 +68,7 @@ export class ShopPage {
 
   async goToLoginPage() {
     this.log('Navigating to login page');
-    await this.page.goto('https://practicesoftwaretesting.com', {
+    await this.page.goto('https://practicesoftwaretesting.com/auth/login', {
       waitUntil: 'domcontentloaded',
       timeout: 60000
     });
@@ -79,7 +79,7 @@ export class ShopPage {
 
   async goToRegisterPage() {
     this.log('Navigating to register page');
-    await this.page.goto('https://practicesoftwaretesting.com', {
+    await this.page.goto('https://practicesoftwaretesting.com/auth/register', {
       waitUntil: 'domcontentloaded',
       timeout: 60000
     });

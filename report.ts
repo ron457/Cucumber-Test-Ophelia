@@ -1,32 +1,43 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+import report from 'multiple-cucumber-html-reporter';
 
-// @ts-ignore - Bypasses missing type definitions for this JavaScript module
-const reporter = require('multiple-cucumber-html-reporter');
-
-reporter.generate({
-  jsonDir: 'reports', // Make sure your Cucumber JSON files are saved in this folder!
+report.generate({
+  jsonDir: 'reports',
   reportPath: 'reports/html-report',
+
+  pageTitle: 'Tools Buying Automation Report',
+  reportName: 'Playwright + Cucumber Execution Report',
+
+  displayDuration: true,
+  durationInMS: true,
   openReportInBrowser: true,
-  saveCollectedJSON: true,
+
   metadata: {
     browser: {
       name: 'chrome',
       version: 'latest'
     },
-    device: 'Local test machine',
+    device: 'Local Machine',
     platform: {
-      name: 'windows',
+      name: 'Windows',
       version: '11'
     }
   },
+
   customData: {
-    title: 'Execution Info',
+    title: 'Project Information',
     data: [
-      { label: 'Project', value: 'Ophelia BDD Commerce Suite' },
-      { label: 'Framework', value: 'Playwright + Cucumber + TypeScript' },
-      { label: 'Target', value: 'https://practicesoftwaretesting.com' },
-      { label: 'Report Generated', value: new Date().toLocaleString() }
+      {
+        label: 'Project',
+        value: 'Tools Buying Site Automation'
+      },
+      {
+        label: 'Framework',
+        value: 'Playwright + Cucumber + TypeScript'
+      },
+      {
+        label: 'BDD',
+        value: 'Gherkin'
+      }
     ]
   }
 });

@@ -1,4 +1,5 @@
-# Ophelia BDD Commerce Suite
+# Ophelia BDD Automation Framework
+
 
 A scalable end-to-end test automation framework built using **Playwright**, **Cucumber (BDD)**, and **TypeScript**, following the Page Object Model (POM) design pattern. Built and tested against the [Practice Software Testing — ToolShop Demo](https://practicesoftwaretesting.com).
 
