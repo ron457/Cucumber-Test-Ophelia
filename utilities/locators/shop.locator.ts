@@ -1,0 +1,22 @@
+export const shopLocators = {
+  navHome: '[data-test="nav-home"]',
+  navCategories: '[data-test="nav-categories"]',
+  navContact: '[data-test="nav-contact"]',
+  languageSelect: '[data-test="language-select"]',
+  product: '[data-test="product-01KSJQ3K9JHAFJK83B4ET2CA9P"]',
+  addToCart: '[data-test="add-to-cart"]',
+  navCart: '[data-test="nav-cart"]',
+  proceed1: '[data-test="proceed-1"]',
+  proceed2: '[data-test="proceed-2"]',
+  proceed2Guest: '[data-test="proceed-2-guest"]',
+  proceed3: '[data-test="proceed-3"]',
+  registerLink: '[data-test="register-link"]',
+  loginSubmit: '[data-test="login-submit"]',
+  continueAsGuest: '[role="tab"][name="Continue as Guest"]',
+  guestEmail: '[data-test="guest-email"]',
+  guestFirstName: '[data-test="guest-first-name"]',
+  guestLastName: '[data-test="guest-last-name"]',
+  guestSubmit: '[data-test="guest-submit"]',
+  paymentMethod: '[data-test="payment-method"]',
+  finish: '[data-test="finish"]'
+};

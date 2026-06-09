@@ -1,0 +1,31 @@
+{
+  "url": "https://practicesoftwaretesting.com/",
+  "login": {
+    "email": "rhitav47@gmail.com",
+    "password": "WarHammer@69"
+  },
+  "guest": {
+    "email": "guestuser@testmail.com",
+    "firstName": "Guest",
+    "lastName": "Tester"
+  },
+  "register": {
+    "firstName": "Lewis",
+    "lastName": "Hamilton",
+    "dob": "2004-05-07",
+    "country": "IN",
+    "postalCode": "66976986",
+    "houseNumber": "77z",
+    "phone": "7876868765076",
+    "email": "rhitav47@gmail.com",
+    "password": "WarHammer@69"
+  },
+  "billing": {
+    "country": "GG",
+    "houseNumber": "7",
+    "postalCode": "669769868",
+    "street": "Demo Street",
+    "city": "Demo City",
+    "state": "Demo State"
+  }
+}
