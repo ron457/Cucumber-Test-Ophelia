@@ -287,6 +287,5 @@ No changes needed outside the `tests` folder and `utilities/locators` for most s
 
 ## Authors
 
-**Anshuman Nayak**  
-**Piyush Nayak**  
+**Anshuman Anand Nayak**  
 **Rhitav Gangopadhyay**  
